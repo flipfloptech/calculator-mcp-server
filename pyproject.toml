@@ -7,21 +7,18 @@ name = "calculator-mcp-server"
 version = "1.0.0"
 description = "A server for complex mathematical calculations"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = [
-    "fastmcp>=0.4.1",
-    "numpy>=2.2.0",
-    "scipy>=1.15.0",
-    "sympy>=1.13.0",
-    "matplotlib",
-    "pydantic>=2.10.0",
+    "fastmcp>=2.11.3",
+    "numpy>=2.3.2",
+    "scipy>=1.16.1",
+    "sympy>=1.14.0",
+    "pydantic>=2.11.7",
+    "matplotlib>=3.10.5",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.3.0"]
-
-[project.scripts]
-calculator-mcp-server = "calculator_server:main"
 
 [tool.setuptools]
 py-modules = ["calculator_server"]

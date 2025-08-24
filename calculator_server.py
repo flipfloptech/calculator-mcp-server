@@ -1,4 +1,4 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 import argparse
 import math
 import numpy as np
@@ -13,13 +13,17 @@ from sympy import integrate as sympy_integrate
 
 # Create MCP Server
 app = FastMCP(
-    title="Mathematical Calculator",
-    description="A server for complex mathematical calculations",
-    version="1.0.0",
-    dependencies=["numpy", "scipy", "sympy", "matplotlib"],
+    name="Mathematical Calculator",
+    instructions=(
+        "Advanced mathematics MCP server providing: safe expression evaluation; equation solving; "
+        "symbolic differentiation and integration; statistics (mean, variance, std, median, mode, "
+        "correlation, confidence intervals) and linear regression; matrix/vector operations; discrete "
+        "summation; expression expansion/factorization; and function plotting. Use variable 'x' for "
+        "symbolic tasks and explicit operators ('*' for multiplication, '**' for powers). "
+        "Backed by NumPy, SciPy, SymPy, and Matplotlib."
+    ),
+    version="1.0.1",
 )
-
-TRANSPORT = "sse"
 
 ALLOW_FUNCTION = {
     "math": math,
@@ -746,13 +750,3 @@ def factorize(expression: str) -> dict:
     except Exception as e:
         return {"error": str(e)}
 
-def main():
-    parser = argparse.ArgumentParser(description="Mathematical Calculator MCP Server")
-    parser.add_argument("--stdio", action="store_true", help="Use STDIO transport instead of SSE")
-    args = parser.parse_args()
-    
-    transport = "stdio" if args.stdio else TRANSPORT
-    app.run(transport=transport)
-
-if __name__ == "__main__":
-    main()
