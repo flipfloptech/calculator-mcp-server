@@ -750,3 +750,13 @@ def factorize(expression: str) -> dict:
     except Exception as e:
         return {"error": str(e)}
 
+def main():
+    parser = argparse.ArgumentParser(description="Mathematical Calculator MCP Server")
+    parser.add_argument("--stdio", action="store_true", help="Use STDIO transport instead of SSE")
+    args = parser.parse_args()
+    
+    transport = "stdio" if args.stdio else "sse"
+    app.run(transport=transport)
+
+if __name__ == "__main__":
+    main()
